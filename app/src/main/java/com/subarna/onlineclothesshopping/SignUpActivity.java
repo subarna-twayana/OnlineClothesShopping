@@ -1,5 +1,6 @@
 package com.subarna.onlineclothesshopping;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -7,6 +8,7 @@ import androidx.core.content.ContextCompat;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
@@ -20,6 +22,16 @@ public class SignUpActivity extends AppCompatActivity {
     Button Signup;
     ImageView imageView;
     Button button;
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 1 && requestCode == RESULT_OK){
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap =(Bitmap) extras.get("data");
+            imageView.setImageBitmap(imageBitmap);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
